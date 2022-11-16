@@ -32,7 +32,6 @@ class Dijkstra
         next_state = possible_state
       end
     end
-    puts "NEXT STEP: #{next_state}"
     history.push(next_state)
     code_lock_selection_step(
       history: history,
