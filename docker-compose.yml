@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    build: 
+      context: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app:cached
+      - bike-thief-bundle:/usr/local/bundle
+    command: 'ruby main.rb'
+    
+volumes:
+  bike-thief-bundle:
