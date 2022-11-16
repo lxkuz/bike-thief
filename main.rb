@@ -1,7 +1,7 @@
 require 'benchmark'
 
 require './algorithms/dijkstra'
-require './dijkstra'
+require './algorithms/lee'
 
 # ---------------- TESTS ---------------------
 
@@ -136,6 +136,9 @@ end
 def start
   puts "-------------- Dijkstra's Algorithm --------------"
   start_tests(Dijkstra)
+
+  puts "-------------- Lee Algorithm --------------"
+  start_tests(Lee)
 end
 
 start
