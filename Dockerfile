@@ -1,6 +1,6 @@
 FROM ruby:3.2.0-preview3
 
-COPY main.rb app/main.rb 
+COPY . app/
 
 # Configure bundler
 ENV LANG=C.UTF-8 \
