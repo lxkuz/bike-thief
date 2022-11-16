@@ -88,7 +88,7 @@ def simple_test
     [1, 1, 1]
   ]
 
-  raise 'wrong' if code_lock_selection(
+  raise 'FAILED' if code_lock_selection(
     exclude: exclude,
     initial_state: from,
     final_state: to,
@@ -104,13 +104,13 @@ def hard_test
   to = [1, 2, 1, 5, 0, 6]
   exclude = [[1, 2, 1, 6, 0, 6], [0, 2, 1, 6, 0, 6] ]
   
-  code_lock_selection(
+  result = code_lock_selection(
     exclude: exclude,
     initial_state: from,
     final_state: to,
     disk_size: 10
   )
-
+  raise 'FAILED' if result.nil?
   puts "OK"
 end
 
@@ -126,8 +126,25 @@ def trap_test
     final_state: to,
     disk_size: 4
   )
+  raise 'FAILED' unless result.nil?
+  puts "OK"
+end
 
-  puts "OK" if result.nil?
+
+def dijkstra_failing_test
+  p "dijkstra failing test"
+  from = [0]
+  to = [3]
+  exclude = [[4]]
+  
+  result = code_lock_selection(
+    exclude: exclude,
+    initial_state: from,
+    final_state: to,
+    disk_size: 6
+  )
+
+  puts "FAILED, this is a lack of Dijkstra's algorithm" if result.nil?
 end
 
 # --------------------- START --------------------
@@ -136,6 +153,7 @@ def start
   simple_test
   hard_test
   trap_test
+  dijkstra_failing_test
 end
 
 start
